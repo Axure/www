@@ -1,0 +1,124 @@
+<script src="two.js"></script>
+
+
+
+<body id="draw-shapes" style="width:800px;height:800px">
+</body>
+
+<script>
+
+var elem = document.getElementById('draw-shapes');
+var params = { width: 1000, height: 1000 };
+var two = new Two(params).appendTo(elem);
+
+// two has convenience methods to create shapes.
+var circle = two.makeCircle(72, 100, 50);
+var rect = two.makeRectangle(213, 100, 100, 100);
+
+// The object returned has many stylable properties:
+circle.fill = '#FF8000';
+circle.stroke = 'orangered'; // Accepts all valid css color
+circle.linewidth = 5;
+
+rect.fill = 'rgb(0, 200, 255)';
+rect.opacity = 0.75;
+rect.noStroke();
+
+function finePolygon(centerX, centerY, size, number) {
+	var vertices = [];
+
+	var vertex;
+	var angle;
+	for (var i = 0; i < number; ++i) {
+		angle = 2 * Math.PI / number * i;
+		vertex = new Two.Anchor(centerX + size * Math.cos(angle), centerY + size * Math.sin(angle), 0, 0, 0, 0, 'moveto');
+		vertices.push(vertex);
+	}
+
+	return Two.Polygon(vertices, true, false);
+	
+}
+
+var polygon = new finePolygon(0, 0, 50, 6);
+polygon.fill = '#FF8000';
+polygon.stroke = 'orangered'; // Accepts all valid css color
+polygon.linewidth = 5;
+
+// Don't forget to tell two to render everything
+// to the screen
+
+
+
+function finePolygon2(centerX, centerY, size, color) {
+	var polygon = two.makePolygon(
+		centerX + size * Math.cos(0 + Math.PI/6),
+		centerY + size * Math.sin(0 + Math.PI/6),
+		centerX + size * Math.cos(2 * Math.PI / 6 * 1 + Math.PI/6),
+		centerY + size * Math.sin(2 * Math.PI / 6 * 1 + Math.PI/6),
+		centerX + size * Math.cos(2 * Math.PI / 6 * 2 + Math.PI/6),
+		centerY + size * Math.sin(2 * Math.PI / 6 * 2 + Math.PI/6),
+		centerX + size * Math.cos(2 * Math.PI / 6 * 3 + Math.PI/6),
+		centerY + size * Math.sin(2 * Math.PI / 6 * 3 + Math.PI/6),
+		centerX + size * Math.cos(2 * Math.PI / 6 * 4 + Math.PI/6),
+		centerY + size * Math.sin(2 * Math.PI / 6 * 4 + Math.PI/6),
+		centerX + size * Math.cos(2 * Math.PI / 6 * 5 + Math.PI/6),
+		centerY + size * Math.sin(2 * Math.PI / 6 * 5 + Math.PI/6),
+		false
+     );
+
+	polygon.fill = color;
+	polygon.stroke = 'orangered'; // Accepts all valid css color
+	polygon.linewidth = 5;
+	console.log("Fill is: ", polygon.fill);
+	return polygon;
+}
+
+finePolygon2(20, 20, 20, '#FF8000');
+centerX = 500;
+centerY = 500;
+size = 50;
+var a, b;
+vectorX = [Math.cos(2*Math.PI/6*0),Math.cos(2*Math.PI/6*1),Math.cos(2*Math.PI/6*2),
+Math.cos(2*Math.PI/6*3),Math.cos(2*Math.PI/6*4),Math.cos(2*Math.PI/6*5)];
+vectorY = [Math.sin(2*Math.PI/6*0),Math.sin(2*Math.PI/6*1),Math.sin(2*Math.PI/6*2),
+Math.sin(2*Math.PI/6*3),Math.sin(2*Math.PI/6*4),Math.sin(2*Math.PI/6*5)];
+console.log(vectorX, vectorY);
+finePolygon2(centerX, centerY, size, '#FF8000');
+var color;
+var r, g, bb;
+for (var i = 1; i < 5; ++i) {
+	b = -1;
+
+	if (i % 2 == 0) {
+		r = 0;
+		g = 128;
+		bb = 0;
+	}
+	else {
+		r = 128;
+		bb = 128;
+		g = 0;
+	}
+	for (var j = 0; j < 6 * i; ++j) {
+		a = j % i;
+		if (a == 0) b++;
+		console.log("Fi");
+		console.log(i, j, a, b);
+
+		r += 128 / (6 * i);
+		g += 128 / (6 * i);
+		bb += 128 / (6 * i);
+
+		console.log("Color: ", r, g, bb);
+
+		console.log(centerX + 2 * i * size * vectorX[b] + 2 * a * size * vectorX[(b + 2) % 6], centerY + 2 * i * size * vectorY[b] + 2 * a * size * vectorY[(b + 2) % 6], size);
+		finePolygon2(centerX + 2 * i * size * vectorX[b] + 2 * a * size * vectorX[(b + 2) % 6], centerY + 2 * i * size * vectorY[b] + 2 * a * size * vectorY[(b + 2) % 6], size, "rgb(" + Math.round(r) + "," + Math.round(g) + "," + Math.round(256 - bb) + ")");
+		console.log("rgb(" + r + "," + Math.round(g) + "," + (256 - bb) + ")");
+	}
+}
+
+
+
+// two.add(polygon)
+two.update();
+</script>

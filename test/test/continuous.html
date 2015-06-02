@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Programming Language Popularity</title>
+	<meta name="Resource-type" content="Document" />
+	<link rel="stylesheet" type="text/css" href="src/jquery.fullPage.css" />
+	<link rel="stylesheet" type="text/css" href="src/default.css" />
+
+	<!--[if IE]>
+		<script type="text/javascript">
+			 var console = { log: function() {} };
+		</script>
+	<![endif]-->
+
+	<script src="src/jquery.min.js"></script>
+	<script src="src/jquery-ui.min.js"></script>
+
+	<script type="text/javascript" src="src/jquery.fullPage.js"></script>
+	<script type="text/javascript" src="src/default.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#fullpage').fullpage({
+			  sectionsColor: ['rgba(0,0,0,0)', 'rgba(0,0,0,0)'],
+			  anchors: ['title', 'overview', 'Java', 'C', 'CPP','ObjectiveC','Csharp','JavaScript','Python','PHP','R','Ruby'],
+			  //menu: '#menu',
+			  continuousVertical: true
+			});
+		});
+	</script>
+<style type="text/css">
+	canvas {
+	margin: 0 auto;
+	z-index: -1;
+	}
+</style>
+</head>
+<body>
+
+
+<div id="fullpage">
+	<div class="section" id="section0">
+
+	<div class="intro">
+		<h1>Programming Language</h1>
+		<h1>Popularity</h1>
+		<p>Source data: www.tiobe.com</p>
+		<p>By 刘汉元 陈雨露 王容基</p>
+		<a class="arrow-down" onclick="jumpto(2,2)"></a></div>
+		
+	</div>
+	<div class="section" id="section1">
+	<iframe src="index.html" id="chart" frameborder="0" scrolling="no" height="100%" width="100%" marginheight="0" marginwidth="0"></iframe>
+	</div>
+	<div class="section" id="section2">
+		<div class="intro">
+			<h1>Scroll Down</h1>
+			<p>And it will animate down to the first section</p></div><a class="arrow-up" onclick="jumpto(2,2)"></a></div>
+		<div class="section" id="section3">
+		<div class="intro">
+			<h1>Scroll Down</h1>
+			<p>And it will animate down to the first section</p></div><a class="arrow-up" onclick="jumpto(2,2)"></a></div>
+		<div class="section" id="section4">
+		<div class="intro">
+			<h1>Scroll Down</h1>
+			<p>And it will animate down to the first section</p></div><a class="arrow-up" onclick="jumpto(2,2)"></a></div>
+		<div class="section" id="section5">
+		<div class="intro">
+			<h1>Scroll Down</h1>
+			<p>And it will animate down to the first section</p></div><a class="arrow-up" onclick="jumpto(2,2)"></a></div>
+
+	<div class="section" id="section6">
+		<div class="intro">
+			<h1>Around the world scrolling</h1>
+			<p>Go to the first sectionand scroll up or to the last one and scroll down to see how it works.</p></div><a class="arrow-up" onclick="jumpto(2,2)"></a></div>
+	<div class="section" id="section7">
+		<div class="intro">
+			<h1>Scroll Down</h1>
+			<p>And it will animate down to the first section</p></div><a class="arrow-up" onclick="jumpto(2,2)"></a></div>
+		<div class="section" id="section8">
+		<div class="intro">
+			<h1>Scroll Down</h1>
+			<p>And it will animate down to the first section</p></div><a class="arrow-up" onclick="jumpto(2,2)"></a></div>
+		<div class="section" id="section9">
+		<div class="intro">
+			<h1>Scroll Down</h1>
+			<p>And it will animate down to the first section</p></div><a class="arrow-up" onclick="jumpto(2,2)"></a></div>
+		<div class="section" id="section10">
+		<div class="intro">
+			<h1>Scroll Down</h1>
+			<p>And it will animate down to the first section</p></div><a class="arrow-up" onclick="jumpto(2,2)"></a></div>
+		<div class="section" id="section11">
+		<div class="intro">
+			<h1>Scroll Down</h1>
+			<p>And it will animate down to the first section</p></div><a class="arrow-up" onclick="jumpto(2,2)"></a></div>
+		<div class="section" id="section12">
+		<div class="intro">
+			<h1>Scroll Down</h1>
+			<p>And it will animate down to the first section</p></div><a class="arrow-up" onclick="jumpto(2,2)"></a></div>
+</div>
+<script type="text/javascript">
+	function jumpto(num)
+	{
+		$.fn.fullpage.moveTo(num, 2);
+	}
+</script>
+<script src="src/trianglify.min.js"></script>
+<script>
+    var pattern = Trianglify({
+        width: window.innerWidth, 
+        height: window.innerHeight
+    });
+    var bk = document.getElementsByClassName('section');
+    var num=bk.length,i=0;
+    for(i=0;i<num;i++)
+    {
+    	//pattern.canvas(bk[i]);
+    	bk[i].style.backgroundImage="url("+pattern.png()+")";
+    	pattern = Trianglify({
+        width: window.innerWidth, 
+        height: window.innerHeight
+    	});
+    }
+    
+</script>
+</body>
+</html>
